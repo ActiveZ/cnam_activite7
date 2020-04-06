@@ -1,5 +1,10 @@
+/**
+ * @author arnaud
+ * @version 6/04/2020
+ * validation 7
+ * Gestion erreurs + javadoc pour programme de garage de voitures
+ */
 public class Launch {
-
     public static void main(String[] args) {
 
         try {

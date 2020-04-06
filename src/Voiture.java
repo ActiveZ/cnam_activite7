@@ -3,17 +3,22 @@ import java.util.Objects;
 public class Voiture {
     private String immat, modele;
 
+    /**
+     * contructeur de la voiture
+     * @param immat
+     * @param modele
+     */
     public Voiture(String immat, String modele) {
-        this.immat = immat.toUpperCase();
+        this.immat = immat.toUpperCase(); // les immat sont passées en majuscules pour les comparer
         this.modele = modele;
+    }
+
+    public String getModele() {
+        return modele;
     }
 
     public String getImmat() {
         return immat;
-    }
-
-    public void setImmat(String immat) {
-        this.immat = immat.toUpperCase();
     }
 
     @Override

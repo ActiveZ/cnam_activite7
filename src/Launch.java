@@ -1,9 +1,12 @@
 /**
- * @author arnaud
+ * @author Arnaud Couturier
  * @version 6/04/2020
  * validation 7
  * Gestion erreurs + javadoc pour programme de garage de voitures
+ * Préconditions: le nombre de place du grarage est un entier strictement positif
  */
+// TODO: 06/04/2020 tests unitaires
+
 public class Launch {
     public static void main(String[] args) {
 

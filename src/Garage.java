@@ -91,4 +91,13 @@ public class Garage {
         }
         return str;
     }
+
+    /**
+     * retourne vrai si la place numPlace est libre
+     * @param numPlace
+     * @return
+     */
+    public boolean isLibre(int numPlace) {
+        return place[numPlace] == null;
+    }
 }

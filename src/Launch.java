@@ -5,7 +5,6 @@
  * Gestion erreurs + javadoc pour programme de garage de voitures
  * Préconditions: le nombre de place du grarage est un entier strictement positif
  */
-// TODO: 06/04/2020 tests unitaires
 
 public class Launch {
     public static void main(String[] args) {
@@ -30,10 +29,12 @@ public class Launch {
             //affichage de l'état du garage plein
             System.out.println(garage.toString());
 
-            System.out.println("La voiture immatriculée AA-111-AA est garée à la place " + garage.place("aa-111-aa"));
+            System.out.println("La voiture immatriculée AA-111-AA est garée à la place " + garage.place("aa-111-aa") + "\n");
 
+            ////////// GENERATION VOLONTAIRE D'UNE ERREUR ///////////////////
             //conflit: garer une voiture à un emplacement occupé
             garage.garer(voiture4, 2); // mettre en commentaire pour poursuivre programme
+            /////////////////////////////////////////////////////////////////
 
             //libération place 2
             garage.recuperer(2);

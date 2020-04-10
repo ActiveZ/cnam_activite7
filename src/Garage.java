@@ -21,8 +21,10 @@ public class Garage {
      * @throws GarageException
      */
     public void garer (Voiture voiture, int numPlace) throws GarageException {
-        if (place[numPlace] != null) {throw new GarageException("ERREUR: cette place est déjà occupée !") ;}
-        place[numPlace] = voiture;
+        if (numPlace < nbPlace) {
+            if (place[numPlace] != null) {throw new GarageException("ERREUR: la place " + numPlace + " est déjà occupée !") ;}
+            place[numPlace] = voiture;
+        }
     }
 
     /**
@@ -32,11 +34,13 @@ public class Garage {
      * @throws GarageException
      */
     public Voiture recuperer (int numPlace) throws GarageException {
-        if (place[numPlace] == null) {throw new GarageException("ERREUR: cette place est inocupée !");}
-        Voiture voiture = place[numPlace];
-        place[numPlace] = null;
-        return voiture;
-
+        if (numPlace < nbPlace) {
+            if (place[numPlace] == null) { throw new GarageException("ERREUR: la place " + numPlace + " est inocupée !"); }
+            Voiture voiture = place[numPlace];
+            place[numPlace] = null;
+            return voiture;
+        }
+        return null;
     }
 
     /**
@@ -49,14 +53,14 @@ public class Garage {
         immat = immat.toUpperCase();
         int i = 0;
         while (i < nbPlace) {
-            if (place[i].getImmat().equals(immat)) {
+            if (!isLibre(i) && place[i].getImmat().equals(immat)) {
                 Voiture voiture = place[i];
                 place[i] = null;
                 return voiture;
             }
             i++;
         }
-        throw new GarageException("ERREUR: cette immatriculation n'est pas dans le garage !");
+        throw new GarageException("ERREUR: immatriculation "+ immat + " absente du garage !");
     }
 
     /**
@@ -68,7 +72,7 @@ public class Garage {
         immat= immat.toUpperCase();
         int i = 0;
         while (i < place.length) {
-            if (place[i].getImmat().equals(immat)) {return i;}
+            if (!isLibre(i) && place[i].getImmat().equals(immat)) {return i;}
             i++;
         }
         return -1;
@@ -80,16 +84,17 @@ public class Garage {
      */
     @Override
     public String toString() {
-        String str = "Le garage a " + nbPlace + " places.\nLes voitures garées sont:\n";
-        int i = 0;
+        String str = "";
+        int i = 0, nbVoiture = 0;
         while (i < nbPlace) {
             if (place[i] != null) {
                 Voiture voiture = place[i];
+                nbVoiture++;
                 str += "Place " + i + ": voiture " + voiture.getModele() + " immatriculée: " + voiture.getImmat() + "\n";
             }
             i++;
         }
-        return str;
+        return "Le garage a " + (nbPlace-nbVoiture) + " places disponibles sur " + nbPlace  + " places.\n" + str;
     }
 
     /**
